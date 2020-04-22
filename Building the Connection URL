@@ -1,0 +1,36 @@
+Building the Connection URL
+
+   
+
+DownloadDownload JDBC Driver
+
+The general form of the connection URL is
+
+jdbc:sqlserver://[serverName[\instanceName][:portNumber]][;property=value[;property=value]]
+
+where:
+
+    jdbc:sqlserver:// (Required) is known as the subprotocol and is constant.
+
+    serverName (Optional) is the address of the server to connect to. This could be a DNS or IP address, or it could be localhost or 127.0.0.1 for the local computer. If not specified in the connection URL, the server name must be specified in the properties collection.
+
+    instanceName (Optional) is the instance to connect to on serverName. If not specified, a connection to the default instance is made.
+
+    portNumber (Optional) is the port to connect to on serverName. The default is 1433. If you're using the default, you don't have to specify the port, nor its preceding ':', in the URL.
+
+    Note
+
+    For optimal connection performance, you should set the portNumber when you connect to a named instance. This will avoid a round trip to the server to determine the port number. If both a portNumber and instanceName are used, the portNumber will take precedence and the instanceName will be ignored.
+
+    property (Optional) is one or more option connection properties. For more information, see Setting the connection properties. Any property from the list can be specified. Properties can only be delimited by using the semicolon (';'), and they can't be duplicated.
+
+Status : Failure -Cannot connect to Microsoft SQL Server on localhost
+
+
+
+
+You need to enable TCP/IP protocol on the SQL Server Configuration Manager (https://technet.microsoft.com/en-us/library/hh231672%28v=sql.110%29.aspx)
+
+And later in Oracle SQL Developer configuration you need to put this on port field:
+
+port:1433/databasename;instance=SQLEXPRESS
